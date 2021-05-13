@@ -1,0 +1,163 @@
+
+
+                                                                       AddressBook System 
+
+UC1) Ability to create a Address Book Service DB
+Ans-
+mysql> create database Adressbook;
+Query OK, 1 row affected (0.31 sec)
+
+mysql> use Adressbook;
+Database changed
+
+
+UC2) Ability to create a Address Book Table with first and last names, address, city, state, zip, phone number and email as its attributes
+Ans-
+mysql> create table Adressbook (
+    -> id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    -> first_name varchar(150) NOT NULL,
+    -> last_name varchar(150) NOT NULL,
+    -> adress varchar(150) NOT NULL,
+    -> state varchar(150) NOT NULL,
+    -> city varchar(150) NOT NULL,
+    -> zip varchar(100),
+    -> email_adress varchar(150) NOT NULL,
+    -> phone_number varchar(15)
+    -> );
+
+mysql> insert into Adressbook (first_name,last_name,adress,state,city,zip,email_adress,phone_number) values
+    -> ('Anusha','Yadav','Rajajinagar','Karnataka','Bangalore','560010','anu@gmail.com','8105561103');
+
+mysql> select * from Adressbook;
++----+------------+-----------+-------------+-----------+-----------+--------+---------------+--------------+
+| id | first_name | last_name | adress      | state     | city      | zip    | email_adress  | phone_number |
++----+------------+-----------+-------------+-----------+-----------+--------+---------------+--------------+
+|  1 | Anusha     | Yadav     | Rajajinagar | Karnataka | Bangalore | 560010 | anu@gmail.com | 8105561103   |
++----+------------+-----------+-------------+-----------+-----------+--------+---------------+--------------+
+1 row in set (0.12 sec)
+
+
+
+UC3) Ability to insert new Contacts to Address Book
+Ans-
+mysql> insert into Adressbook (first_name,last_name,adress,state,city,zip,email_adress,phone_number) values
+    -> ('Mary','Jones','Henry street','Newyork','Alberston','23612','mary@gmail.com','656777777'),
+    -> ('Carrie','Yang','Flower street','Newyork','Willston','34566','carr@gmail.com','567888853');
+
+mysql> select * from Adressbook;
++----+------------+-----------+---------------+-----------+-----------+--------+----------------+--------------+
+| id | first_name | last_name | adress        | state     | city      | zip    | email_adress   | phone_number |
++----+------------+-----------+---------------+-----------+-----------+--------+----------------+--------------+
+|  1 | Anusha     | Yadav     | Rajajinagar   | Karnataka | Bangalore | 560010 | anu@gmail.com  | 8105561103   |
+|  2 | Mary       | Jones     | Henry street  | Newyork   | Alberston | 23612  | mary@gmail.com | 656777777    |
+|  3 | Carrie     | Yang      | Flower street | Newyork   | Willston  | 34566  | carr@gmail.com | 567888853    |
++----+------------+-----------+---------------+-----------+-----------+--------+----------------+--------------+
+3 rows in set (0.00 sec)
+
+
+
+UC4) Ability to edit existing contact person using their name
+Ans-
+mysql> select * from Adressbook;
++----+------------+-----------+---------------+-----------+-----------+--------+----------------+--------------+
+| id | first_name | last_name | adress        | state     | city      | zip    | email_adress   | phone_number |
++----+------------+-----------+---------------+-----------+-----------+--------+----------------+--------------+
+|  1 | Anusha     | Yadav     | Rajajinagar   | Karnataka | Bangalore | 560010 | anu@gmail.com  | 8105561103   |
+|  2 | Mary       | Jones     | Henry street  | Newyork   | Alberston | 23612  | mary@gmail.com | 656777777    |
+|  3 | Carrie     | Yang      | Flower street | Newyork   | Willston  | 34566  | carr@gmail.com | 567888853    |
++----+------------+-----------+---------------+-----------+-----------+--------+----------------+--------------+
+3 rows in set (0.00 sec)
+
+mysql> update Adressbook
+    -> set phone_number='9019628856' WHERE first_name='Anusha';
+Query OK, 1 row affected (0.09 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from Adressbook;
++----+------------+-----------+---------------+-----------+-----------+--------+----------------+--------------+
+| id | first_name | last_name | adress        | state     | city      | zip    | email_adress   | phone_number |
++----+------------+-----------+---------------+-----------+-----------+--------+----------------+--------------+
+|  1 | Anusha     | Yadav     | Rajajinagar   | Karnataka | Bangalore | 560010 | anu@gmail.com  | 9019628856   |
+|  2 | Mary       | Jones     | Henry street  | Newyork   | Alberston | 23612  | mary@gmail.com | 656777777    |
+|  3 | Carrie     | Yang      | Flower street | Newyork   | Willston  | 34566  | carr@gmail.com | 567888853    |
++----+------------+-----------+---------------+-----------+-----------+--------+----------------+--------------+
+3 rows in set (0.14 sec)
+
+
+
+UC5) Ability to delete a person using person's name
+Ans-
+mysql> select * from Adressbook;
++----+------------+-----------+---------------+-----------+-----------+--------+----------------+--------------+
+| id | first_name | last_name | adress        | state     | city      | zip    | email_adress   | phone_number |
++----+------------+-----------+---------------+-----------+-----------+--------+----------------+--------------+
+|  1 | Anusha     | Yadav     | Rajajinagar   | Karnataka | Bangalore | 560010 | anu@gmail.com  | 9019628856   |
+|  2 | Mary       | Jones     | Henry street  | Newyork   | Alberston | 23612  | mary@gmail.com | 656777777    |
+|  3 | Carrie     | Yang      | Flower street | Newyork   | Willston  | 34566  | carr@gmail.com | 567888853    |
++----+------------+-----------+---------------+-----------+-----------+--------+----------------+--------------+
+3 rows in set (0.14 sec)
+
+mysql> delete from Adressbook
+    -> where first_name='Mary';
+Query OK, 1 row affected (0.18 sec)
+
+mysql> select * from Adressbook;
++----+------------+-----------+---------------+-----------+-----------+--------+----------------+--------------+
+| id | first_name | last_name | adress        | state     | city      | zip    | email_adress   | phone_number |
++----+------------+-----------+---------------+-----------+-----------+--------+----------------+--------------+
+|  1 | Anusha     | Yadav     | Rajajinagar   | Karnataka | Bangalore | 560010 | anu@gmail.com  | 9019628856   |
+|  3 | Carrie     | Yang      | Flower street | Newyork   | Willston  | 34566  | carr@gmail.com | 567888853    |
++----+------------+-----------+---------------+-----------+-----------+--------+----------------+--------------+
+2 rows in set (0.10 sec)
+
+
+
+UC6) Ability to Retrieve Person belonging to a City or State from the Address Book
+Ans-
+mysql> select * from Adressbook;
++----+------------+-----------+---------------+-----------+-----------+--------+----------------+--------------+
+| id | first_name | last_name | adress        | state     | city      | zip    | email_adress   | phone_number |
++----+------------+-----------+---------------+-----------+-----------+--------+----------------+--------------+
+|  1 | Anusha     | Yadav     | Rajajinagar   | Karnataka | Bangalore | 560010 | anu@gmail.com  | 9019628856   |
+|  3 | Carrie     | Yang      | Flower street | Newyork   | Willston  | 34566  | carr@gmail.com | 567888853    |
+|  4 | Mary       | Jones     | Henry street  | Newyork   | Alberston | 23612  | mary@gmail.com | 656777777    |
++----+------------+-----------+---------------+-----------+-----------+--------+----------------+--------------+
+3 rows in set (0.01 sec)
+
+mysql> select city from Adressbook;
++-----------+
+| city      |
++-----------+
+| Bangalore |
+| Willston  |
+| Alberston |
++-----------+
+3 rows in set (0.00 sec)
+
+
+
+UC7) Ability to understand the size of address book by City and State
+Ans-
+mysql> select count(*) from Adressbook where city='Bangalore' AND state='Karnataka';
++----------+
+| count(*) |
++----------+
+|        1 |
++----------+
+1 row in set (0.11 sec)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

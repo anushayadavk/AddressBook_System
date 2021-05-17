@@ -2,7 +2,7 @@
 
                                                                        AddressBook System 
 
-UC1) Ability to create a Address Book Service DB
+#UC1) Ability to create a Address Book Service DB
 Ans-
 mysql> create database Adressbook;
 Query OK, 1 row affected (0.31 sec)
